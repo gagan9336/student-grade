@@ -1,76 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- bootstrap stylesheet -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-10 col-md-8 col-lg-6">
-                <h1 style="text-align: center;">Student Data</h1>
-                <!-- Form -->
-                <form class="form-example" action="/" method="POST" onsubmit='disableButton()'>
-                    <!-- Input fields -->
-                    <div class="form-group">
-                        <input type="text" name="student_name" placeholder="Student Name" class="form-control username"
-                            id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="student_id" placeholder="Student_Id" class="form-control username"
-                            id="exampleInputUsername1" aria-describedby="usernameHelp" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="course" placeholder="Course" class="form-control subject"
-                            id="exampleInputsubject1" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-customized" type="submit"
-                        id="btn">Submit</button>
-                </form>
-                <!-- Form end -->
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+          <h1 style="text-align: center">Student Data</h1>
+          <!-- Form -->
+          <form
+            class="form-example"
+            action="/"
+            method="POST"
+            onsubmit="disableButton()"
+          >
+            <!-- Input fields -->
+            <div class="form-group">
+              <input
+                type="text"
+                name="student_name"
+                placeholder="Student Name"
+                class="form-control username"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                required
+              />
             </div>
+            <div class="form-group">
+              <input
+                type="Number"
+                name="student_id"
+                placeholder="Roll Number"
+                class="form-control username"
+                id="exampleInputUsername1"
+                aria-describedby="usernameHelp"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="course"
+                placeholder="Course"
+                class="form-control subject"
+                id="exampleInputsubject1"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Grades</label
+                >
+              </div>
+              <select
+                class="custom-select"
+                id="inputGroupSelect01"
+                name="grade"
+              >
+                <option selected disabled>None</option>
+                <option value="A -10-">Grade A</option>
+                <option value="B -09-">Grade B</option>
+                <option value="C -08-">Grade C</option>
+                <option value="D -Fail-">Grade D</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-block btn-customized"
+              type="submit"
+              id="btn"
+            >
+              Submit
+            </button>
+          </form>
+          <!-- Form end -->
         </div>
-        <hr>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Student Name</th>
-                    <th scope="col">Student ID</th>
-                    <th scope="col">Course</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% student.forEach((student)=>{%>
-                  <tr>
-                    <td><%= student.student_name %></td>
-                    <td><%= student.student_id %></td>
-                    <td><%= student.course %></td>
-                  </tr>
-                  <% });%>
-                  
-                </tbody>
-              </table>
-        </div>
+      </div>
+      <hr />
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Student Name</th>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Course</th>
+              <th scope="col">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% student.forEach((student)=>{%>
+            <tr>
+              <td><%= student.student_name %></td>
+              <td><%= student.student_id %></td>
+              <td><%= student.course %></td>
+              <% if(student.grade == "D -Fail-") { %>
+              <td style="background-color: rgba(255, 0, 0, 0.651)">
+                <%= student.grade %>
+              </td>
+              <% } else { %>
+              <td style="background-color: rgba(0, 128, 0, 0.582)">
+                <%= student.grade %>
+              </td>
+              <% } %>
+            </tr>
+            <% });%>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    
-
-
-        
-        
-        
-        
-
-
-
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
